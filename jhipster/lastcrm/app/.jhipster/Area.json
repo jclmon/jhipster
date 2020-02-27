@@ -1,0 +1,33 @@
+{
+    "name": "Area",
+    "fields": [
+        {
+            "fieldName": "nombre",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength",
+                "required"
+            ],
+            "fieldValidateRulesMaxlength": 200
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "municipio",
+            "otherEntityRelationshipName": "area",
+            "relationshipValidateRules": "required",
+            "relationshipName": "municipio",
+            "otherEntityField": "nombre"
+        }
+    ],
+    "changelogDate": "20191011054808",
+    "entityTableName": "area",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

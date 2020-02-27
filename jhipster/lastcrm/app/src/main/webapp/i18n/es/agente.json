@@ -1,0 +1,25 @@
+{
+  "lastcrmApp": {
+    "agente": {
+      "home": {
+        "title": "Agentes",
+        "createLabel": "Crear nuevo Agente",
+        "createOrEditLabel": "Crear o editar Agente",
+        "notFound": "No Agentes found"
+      },
+      "created": "Un nuevo Agente ha sido creado con el identificador {{ param }}",
+      "updated": "Un Agente ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Agente ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Agente {{ id }}?"
+      },
+      "detail": {
+        "title": "Agente"
+      },
+      "nombre": "Nombre",
+      "apellido1": "Apellido 1",
+      "apellido2": "Apellido 2",
+      "telefono": "Telefono"
+    }
+  }
+}

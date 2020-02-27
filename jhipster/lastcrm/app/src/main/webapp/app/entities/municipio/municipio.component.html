@@ -1,0 +1,73 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="lastcrmApp.municipio.home.title">Municipios</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-municipio" [routerLink]="['/municipio/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="lastcrmApp.municipio.home.createLabel">
+            Create a new Municipio
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="municipios?.length === 0">
+        <span jhiTranslate="lastcrmApp.municipio.home.notFound">No municipios found</span>
+    </div>
+    <div class="table-responsive" *ngIf="municipios?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nombre"><span jhiTranslate="lastcrmApp.municipio.nombre">Nombre</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="codPostal"><span jhiTranslate="lastcrmApp.municipio.codPostal">Cod Postal</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="provinciaNombre"><span jhiTranslate="lastcrmApp.municipio.provincia">Provincia</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let municipio of municipios ;trackBy: trackId">
+                <td><a [routerLink]="['/municipio', municipio.id, 'view' ]">{{municipio.id}}</a></td>
+                <td>{{municipio.nombre}}</td>
+                <td>{{municipio.codPostal}}</td>
+                <td>
+                    <div *ngIf="municipio.provinciaId">
+                        <a [routerLink]="['/provincia', municipio.provinciaId , 'view' ]" >{{municipio.provinciaNombre}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/municipio', municipio.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/municipio', municipio.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/municipio', { outlets: { popup: municipio.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div [hidden]="municipios?.length === 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

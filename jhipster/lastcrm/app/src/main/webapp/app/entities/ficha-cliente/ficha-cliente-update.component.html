@@ -1,0 +1,121 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-ficha-cliente-heading" jhiTranslate="lastcrmApp.fichaCliente.home.createOrEditLabel">Create or edit a Ficha Cliente</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lastcrmApp.fichaCliente.solicitud" for="field_solicitud">Solicitud</label>
+                    <select class="form-control" name="solicitud" formControlName="solicitud" id="field_solicitud">
+                        <option value="COMPRA">{{'lastcrmApp.Solicitud.COMPRA' | translate}}</option>
+                        <option value="VENTA">{{'lastcrmApp.Solicitud.VENTA' | translate}}</option>
+                        <option value="ALQUILER">{{'lastcrmApp.Solicitud.ALQUILER' | translate}}</option>
+                        <option value="COMPARTIR">{{'lastcrmApp.Solicitud.COMPARTIR' | translate}}</option>
+                        <option value="VACACIONAL">{{'lastcrmApp.Solicitud.VACACIONAL' | translate}}</option>
+                    </select>
+                    <div *ngIf="editForm.get('solicitud').invalid && (editForm.get('solicitud').dirty || editForm.get('solicitud').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('solicitud').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lastcrmApp.fichaCliente.prioridad" for="field_prioridad">Prioridad</label>
+                    <select class="form-control" name="prioridad" formControlName="prioridad" id="field_prioridad">
+                        <option value="ALTA">{{'lastcrmApp.Prioridad.ALTA' | translate}}</option>
+                        <option value="MEDIA">{{'lastcrmApp.Prioridad.MEDIA' | translate}}</option>
+                        <option value="BAJA">{{'lastcrmApp.Prioridad.BAJA' | translate}}</option>
+                    </select>
+                    <div *ngIf="editForm.get('prioridad').invalid && (editForm.get('prioridad').dirty || editForm.get('prioridad').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('prioridad').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lastcrmApp.fichaCliente.comentario" for="field_comentario">Comentario</label>
+                    <input type="text" class="form-control" name="comentario" id="field_comentario"
+                           formControlName="comentario"/>
+                    <div *ngIf="editForm.get('comentario').invalid && (editForm.get('comentario').dirty || editForm.get('comentario').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('comentario').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 3999 }">
+                        This field cannot be longer than 3999 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lastcrmApp.fichaCliente.cliente" for="field_cliente">Cliente</label>
+                    <select class="form-control" id="field_cliente" name="cliente" formControlName="clienteId">
+                        <option *ngIf="!editForm.get('clienteId').value" [ngValue]="null" selected></option>
+                        <option [ngValue]="clienteOption.id" *ngFor="let clienteOption of clientes; trackBy: trackClienteById">{{clienteOption.nombre}}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('clienteId').invalid && (editForm.get('clienteId').dirty || editForm.get('clienteId').touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('clienteId').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lastcrmApp.fichaCliente.producto" for="field_producto">Producto</label>
+                    <select class="form-control" id="field_producto" name="producto" formControlName="productoId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="productoOption.id" *ngFor="let productoOption of productos; trackBy: trackProductoById">{{productoOption.direccion}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label jhiTranslate="lastcrmApp.fichaCliente.area" for="field_areas">Area</label>
+                    <select class="form-control" id="field_areas" multiple name="areas" formControlName="areas">
+                        <option [ngValue]="getSelected(editForm.get('areas').value, areaOption)" *ngFor="let areaOption of areas; trackBy: trackAreaById">{{areaOption.nombre}}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('areas').invalid && (editForm.get('areas').dirty || editForm.get('areas').touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('areas').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label jhiTranslate="lastcrmApp.fichaCliente.cita" for="field_citas">Cita</label>
+                    <select class="form-control" id="field_citas" multiple name="citas" formControlName="citas">
+                        <option [ngValue]="getSelected(editForm.get('citas').value, citaOption)" *ngFor="let citaOption of citas; trackBy: trackCitaById">{{citaOption.id}}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('citas').invalid && (editForm.get('citas').dirty || editForm.get('citas').touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('citas').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label jhiTranslate="lastcrmApp.fichaCliente.tipoProducto" for="field_tipoProductos">Tipo Producto</label>
+                    <select class="form-control" id="field_tipoProductos" multiple name="tipoProductos" formControlName="tipoProductos">
+                        <option [ngValue]="getSelected(editForm.get('tipoProductos').value, tipoProductoOption)" *ngFor="let tipoProductoOption of tipoproductos; trackBy: trackTipoProductoById">{{tipoProductoOption.nombre}}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('tipoProductos').invalid && (editForm.get('tipoProductos').dirty || editForm.get('tipoProductos').touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('tipoProductos').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,83 @@
+<section class="hero-wrap hero-wrap-2 ftco-degree-bg js-fullheight" style="background-image: url('../../content/images/bg_1.jpg');"
+         data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate pb-5 text-center">
+                <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i
+                    class="ion-ios-arrow-forward"></i></a></span> <span>Properties <i class="ion-ios-arrow-forward"></i></span>
+                </p>
+                <h1 class="mb-3 bread">Choose <br>Your Desired Home</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<jhi-alert></jhi-alert>
+<br/>
+<div class="alert alert-warning" *ngIf="productos?.length === 0">
+    <span jhiTranslate="lastcrmApp.producto.home.notFound">No productos found</span>
+</div>
+
+<section *ngIf="productos?.length > 0" class="ftco-section">
+    <div class="container">
+
+        <div class="mb-2 d-flex justify-content-end align-items-center">
+            <span class="mr-2 col-2">Dirección</span>
+            <input type="search" class="form-control" style="border: 1px solid rgba(0,0,0,0.28);" [(ngModel)]="filter">
+            <span class="mx-2 col-1">Sort by</span>
+            <div class="btn-group" role="group" jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+                <button type="button" class="btn btn-light d-flex" jhiSortBy="tipoProductoNombre">
+                    <fa-icon [icon]="'sort'" class="mr-2"></fa-icon>
+                    <span jhiTranslate="lastcrmApp.producto.tipoProducto">Tipo Producto</span>
+                </button>
+                <button type="button" class="btn btn-light d-flex" jhiSortBy="precio">
+                    <fa-icon [icon]="'sort'" class="mr-2"></fa-icon>
+                    <span jhiTranslate="lastcrmApp.producto.precio">Precio</span>
+                </button>
+                <button type="button" class="btn btn-light d-flex" jhiSortBy="municipioNombre">
+                    <fa-icon [icon]="'sort'" class="mr-2"></fa-icon>
+                    <span jhiTranslate="lastcrmApp.producto.municipio">Municipio</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="row">
+
+                <div class="col-md-4" [routerLink]="['/properties', producto.id, 'view' ]" *ngFor="let producto of (productos  | pureFilter:filter:'direccion'); trackBy: trackId">
+                    <div class="property-wrap ftco-animate">
+                        <img [src]="'data:' + producto.image1ContentType +';base64,' + producto.image1" class="img"/>
+                        <div class="text">
+
+                            <small *ngIf="producto.tipoProductoId">
+                                <a [routerLink]="['/tipo-producto', producto.tipoProductoId , 'view' ]" >{{producto.tipoProductoNombre}}</a>
+                            </small>
+                            <p class="mb-1">{{producto.direccion}}</p>
+                            <span class="location">{{producto.municipioNombre}}</span>
+                            <p class="price"><span class="old-price">{{producto.precioAnterior}}</span><span class="orig-price">{{producto.precio}}<small>/mo</small></span></p>
+
+
+                            <ul class="property_list">
+                                <li><span class="flaticon-bed"></span>{{producto.dormitorios}}</li>
+                                <li><span class="flaticon-bathtub"></span>{{producto.aseos}}</li>
+                                <li><span class="flaticon-floor-plan"></span>{{producto.metros}} m</li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+
+        <div [hidden]="productos?.length === 0">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+
+    </div>
+</section>
+

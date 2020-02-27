@@ -1,0 +1,33 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="area">
+            <h2><span jhiTranslate="lastcrmApp.area.detail.title">Area</span> {{area.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="lastcrmApp.area.nombre">Nombre</span></dt>
+                <dd>
+                    <span>{{area.nombre}}</span>
+                </dd>
+                <dt><span jhiTranslate="lastcrmApp.area.municipio">Municipio</span></dt>
+                <dd>
+                    <div *ngIf="area.municipioId">
+                        <a [routerLink]="['/municipio', area.municipioId, 'view']">{{area.municipioNombre}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/area', area.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

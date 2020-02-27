@@ -1,0 +1,82 @@
+{
+    "name": "FichaCliente",
+    "fields": [
+        {
+            "fieldName": "solicitud",
+            "fieldType": "Solicitud",
+            "fieldValues": "COMPRA,VENTA,ALQUILER,COMPARTIR,VACACIONAL",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "prioridad",
+            "fieldType": "Prioridad",
+            "fieldValues": "ALTA,MEDIA,BAJA",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "comentario",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 3999
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "cliente",
+            "otherEntityRelationshipName": "fichaCliente",
+            "relationshipValidateRules": "required",
+            "relationshipName": "cliente",
+            "otherEntityField": "nombre"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "producto",
+            "otherEntityRelationshipName": "fichaCliente",
+            "relationshipName": "producto",
+            "otherEntityField": "direccion"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "area",
+            "otherEntityRelationshipName": "fichaCliente",
+            "relationshipValidateRules": "required",
+            "relationshipName": "area",
+            "otherEntityField": "nombre",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "cita",
+            "otherEntityRelationshipName": "fichaCliente",
+            "relationshipValidateRules": "required",
+            "relationshipName": "cita",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "tipoProducto",
+            "otherEntityRelationshipName": "fichaCliente",
+            "relationshipValidateRules": "required",
+            "relationshipName": "tipoProducto",
+            "otherEntityField": "nombre",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20191011054811",
+    "entityTableName": "ficha_cliente",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,11 @@
+id;fecha;comentario;estado;agente_id
+1;2019-10-10T09:08:41;Games;CANCELADA;1
+2;2019-10-10T13:11:01;encompassing;PENDIENTE;2
+3;2019-10-10T22:02:43;Mauritania;CANCELADA;3
+4;2019-10-10T13:05:27;card Plastic;PENDIENTE;4
+5;2019-10-11T04:33:59;encompassing;PENDIENTE;5
+6;2019-10-10T19:03:19;Dominican Republic Credit Card Account Handmade;PENDIENTE;6
+7;2019-10-10T20:58:31;invoice withdrawal;PENDIENTE;7
+8;2019-10-11T02:11:05;Bedfordshire;CANCELADA;8
+9;2019-10-10T17:30:43;Future-proofed deposit Sausages;CANCELADA;9
+10;2019-10-10T13:35:08;bandwidth azure;REALIZADA;10

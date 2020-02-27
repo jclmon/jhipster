@@ -1,0 +1,42 @@
+{
+    "name": "Municipio",
+    "fields": [
+        {
+            "fieldName": "nombre",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength",
+                "required"
+            ],
+            "fieldValidateRulesMaxlength": 200
+        },
+        {
+            "fieldName": "codPostal",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength",
+                "required"
+            ],
+            "fieldValidateRulesMaxlength": 15
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "provincia",
+            "otherEntityRelationshipName": "municipio",
+            "relationshipValidateRules": "required",
+            "relationshipName": "provincia",
+            "otherEntityField": "nombre"
+        }
+    ],
+    "changelogDate": "20191011054813",
+    "entityTableName": "municipio",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

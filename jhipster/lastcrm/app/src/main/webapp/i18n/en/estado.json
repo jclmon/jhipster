@@ -1,0 +1,10 @@
+{
+  "lastcrmApp": {
+    "Estado": {
+      "null": "",
+      "PENDIENTE": "PENDIENTE",
+      "REALIZADA": "REALIZADA",
+      "CANCELADA": "CANCELADA"
+    }
+  }
+}

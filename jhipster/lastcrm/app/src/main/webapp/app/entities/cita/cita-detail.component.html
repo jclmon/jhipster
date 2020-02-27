@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="cita">
+            <h2><span jhiTranslate="lastcrmApp.cita.detail.title">Cita</span> {{cita.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="lastcrmApp.cita.fecha">Fecha</span></dt>
+                <dd>
+                    <span>{{cita.fecha}}</span>
+                </dd>
+                <dt><span jhiTranslate="lastcrmApp.cita.comentario">Comentario</span></dt>
+                <dd>
+                    <span>{{cita.comentario}}</span>
+                </dd>
+                <dt><span jhiTranslate="lastcrmApp.cita.estado">Estado</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'lastcrmApp.Estado.' + cita.estado}}">{{cita.estado}}</span>
+                </dd>
+                <dt><span jhiTranslate="lastcrmApp.cita.agente">Agente</span></dt>
+                <dd>
+                    <div *ngIf="cita.agenteId">
+                        <a [routerLink]="['/agente', cita.agenteId, 'view']">{{cita.agenteNombre}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/cita', cita.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

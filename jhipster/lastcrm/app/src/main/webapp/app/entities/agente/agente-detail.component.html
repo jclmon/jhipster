@@ -1,0 +1,39 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="agente">
+            <h2><span jhiTranslate="lastcrmApp.agente.detail.title">Agente</span> {{agente.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="lastcrmApp.agente.nombre">Nombre</span></dt>
+                <dd>
+                    <span>{{agente.nombre}}</span>
+                </dd>
+                <dt><span jhiTranslate="lastcrmApp.agente.apellido1">Apellido 1</span></dt>
+                <dd>
+                    <span>{{agente.apellido1}}</span>
+                </dd>
+                <dt><span jhiTranslate="lastcrmApp.agente.apellido2">Apellido 2</span></dt>
+                <dd>
+                    <span>{{agente.apellido2}}</span>
+                </dd>
+                <dt><span jhiTranslate="lastcrmApp.agente.telefono">Telefono</span></dt>
+                <dd>
+                    <span>{{agente.telefono}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/agente', agente.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

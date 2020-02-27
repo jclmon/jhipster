@@ -1,0 +1,154 @@
+application {
+  config {
+    databaseType sql
+    devDatabaseType mysql
+    enableHibernateCache true
+    enableSwaggerCodegen false
+    enableTranslation true
+    jhiPrefix jhi
+    languages [es, ca, en]
+    messageBroker false
+    nativeLanguage es
+    packageName com.lastcrm.gateway
+    packageFolder com/lastcrm/gateway
+    prodDatabaseType mysql
+    searchEngine false
+    serviceDiscoveryType eureka
+    skipClient false
+    skipServer false
+    testFrameworks [protractor]
+    websocket false
+    promptValues [object Object]
+    jhipsterVersion 6.3.0
+    applicationType monolith
+    baseName lastcrm
+    serverPort 8080
+    authenticationType jwt
+    cacheProvider hazelcast
+    buildTool maven
+    jwtSecretKey ZjQ0YjM0MzlkMTI3MDIyNzdmNjUzMTQ1ZjVjZDE0MDFlMmM4MjY1MzM4ODMwOTViNDEyMzRiZDM4ZjE2ZDhkZDY2NzkzODE3ZmEwYjQ4MzU5M2IxYTgwNTdkYWM2YmM2YTg4NTEwMjA1NWQyOGFlYzhlNmU0ODNjYThhMWIxMGI=
+    embeddableLaunchScript false
+    useSass true
+    clientPackageManager npm
+    clientFramework angularX
+    clientTheme none
+    clientThemeVariant 
+    entitySuffix 
+    dtoSuffix DTO
+    otherModules 
+    blueprints 
+    skipUserManagement false
+  }
+
+  entities Agente, Area, Cita, Cliente, FichaCliente, Fuente, Municipio, Pais, Producto, Provincia, TipoProducto
+}
+
+entity Agente {
+  nombre String maxlength(200) required,
+  apellido1 String maxlength(200) required,
+  apellido2 String maxlength(200),
+  telefono String maxlength(15) required
+}
+entity Area {
+  nombre String maxlength(200) required
+}
+entity Cita {
+  fecha Instant required,
+  comentario String maxlength(3999),
+  estado Estado required
+}
+entity Cliente {
+  nombre String maxlength(200) required,
+  apellido1 String maxlength(200) required,
+  apellido2 String maxlength(200),
+  nif String maxlength(15),
+  genero Genero required,
+  tlfMovil String maxlength(15) required,
+  tlfMovil2 String maxlength(15),
+  tlfFijo String maxlength(15),
+  fax String maxlength(15),
+  email1 String required pattern(/^[^@\s]+@[^@\s]+\.[^@\s]+$/),
+  email2 String pattern(/^[^@\s]+@[^@\s]+\.[^@\s]+$/)
+}
+entity FichaCliente {
+  solicitud Solicitud required,
+  prioridad Prioridad required,
+  comentario String maxlength(3999)
+}
+entity Fuente {
+  nombre String maxlength(200) required
+}
+entity Municipio {
+  nombre String maxlength(200) required,
+  codPostal String maxlength(15) required
+}
+entity Pais {
+  nombre String maxlength(200) required
+}
+entity Producto {
+  direccion String maxlength(500) required,
+  comentario TextBlob,
+  destino Solicitud required,
+  precio Long,
+  image1 ImageBlob,
+  image2 ImageBlob,
+  image3 ImageBlob,
+  image4 ImageBlob,
+  image5 ImageBlob,
+  precioAnterior Long,
+  dormitorios Integer,
+  aseos Integer,
+  metros Long,
+  garage Integer,
+  anioconstruccion Integer
+}
+entity Provincia {
+  nombre String maxlength(200) required
+}
+entity TipoProducto {
+  nombre String maxlength(100) required
+}
+enum Estado {
+  PENDIENTE,
+  REALIZADA,
+  CANCELADA
+}
+enum Genero {
+  HOMBRE,
+  MUJER,
+  OTRO
+}
+enum Solicitud {
+  COMPRA,
+  VENTA,
+  ALQUILER,
+  COMPARTIR,
+  VACACIONAL
+}
+enum Prioridad {
+  ALTA,
+  MEDIA,
+  BAJA
+}
+
+relationship ManyToOne {
+  Area{municipio(nombre) required} to Municipio,
+  Cita{agente(nombre) required} to Agente,
+  Cliente{fuente(nombre) required} to Fuente,
+  FichaCliente{cliente(nombre) required} to Cliente,
+  FichaCliente{producto(direccion)} to Producto,
+  Municipio{provincia(nombre) required} to Provincia,
+  Producto{municipio(nombre) required} to Municipio,
+  Producto{tipoProducto(nombre) required} to TipoProducto,
+  Provincia{pais(nombre) required} to Pais
+}
+relationship ManyToMany {
+  FichaCliente{area(nombre) required} to Area,
+  FichaCliente{cita required} to Cita,
+  FichaCliente{tipoProducto(nombre) required} to TipoProducto
+}
+
+dto Agente, Area, Cita, Cliente, FichaCliente, Fuente, Municipio, Pais, Producto, Provincia, TipoProducto with mapstruct
+paginate Agente, Area, Cita, Cliente, FichaCliente, Fuente, Municipio, Pais, Producto, Provincia, TipoProducto with pagination
+service Agente, Area, Cita, Cliente, FichaCliente, Fuente, Municipio, Pais, Producto, Provincia, TipoProducto with serviceClass
+filter Agente, Area, Cita, Cliente, FichaCliente, Fuente, Municipio, Pais, Producto, Provincia, TipoProducto

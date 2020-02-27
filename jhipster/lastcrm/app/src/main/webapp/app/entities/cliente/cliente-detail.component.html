@@ -1,0 +1,73 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="cliente">
+            <h2><span jhiTranslate="lastcrmApp.cliente.detail.title">Cliente</span> {{cliente.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="lastcrmApp.cliente.nombre">Nombre</span></dt>
+                <dd>
+                    <span>{{cliente.nombre}}</span>
+                </dd>
+                <dt><span jhiTranslate="lastcrmApp.cliente.apellido1">Apellido 1</span></dt>
+                <dd>
+                    <span>{{cliente.apellido1}}</span>
+                </dd>
+                <dt><span jhiTranslate="lastcrmApp.cliente.apellido2">Apellido 2</span></dt>
+                <dd>
+                    <span>{{cliente.apellido2}}</span>
+                </dd>
+                <dt><span jhiTranslate="lastcrmApp.cliente.nif">Nif</span></dt>
+                <dd>
+                    <span>{{cliente.nif}}</span>
+                </dd>
+                <dt><span jhiTranslate="lastcrmApp.cliente.genero">Genero</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'lastcrmApp.Genero.' + cliente.genero}}">{{cliente.genero}}</span>
+                </dd>
+                <dt><span jhiTranslate="lastcrmApp.cliente.tlfMovil">Tlf Movil</span></dt>
+                <dd>
+                    <span>{{cliente.tlfMovil}}</span>
+                </dd>
+                <dt><span jhiTranslate="lastcrmApp.cliente.tlfMovil2">Tlf Movil 2</span></dt>
+                <dd>
+                    <span>{{cliente.tlfMovil2}}</span>
+                </dd>
+                <dt><span jhiTranslate="lastcrmApp.cliente.tlfFijo">Tlf Fijo</span></dt>
+                <dd>
+                    <span>{{cliente.tlfFijo}}</span>
+                </dd>
+                <dt><span jhiTranslate="lastcrmApp.cliente.fax">Fax</span></dt>
+                <dd>
+                    <span>{{cliente.fax}}</span>
+                </dd>
+                <dt><span jhiTranslate="lastcrmApp.cliente.email1">Email 1</span></dt>
+                <dd>
+                    <span>{{cliente.email1}}</span>
+                </dd>
+                <dt><span jhiTranslate="lastcrmApp.cliente.email2">Email 2</span></dt>
+                <dd>
+                    <span>{{cliente.email2}}</span>
+                </dd>
+                <dt><span jhiTranslate="lastcrmApp.cliente.fuente">Fuente</span></dt>
+                <dd>
+                    <div *ngIf="cliente.fuenteId">
+                        <a [routerLink]="['/fuente', cliente.fuenteId, 'view']">{{cliente.fuenteNombre}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/cliente', cliente.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

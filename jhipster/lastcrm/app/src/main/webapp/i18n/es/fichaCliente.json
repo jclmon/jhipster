@@ -1,0 +1,29 @@
+{
+  "lastcrmApp": {
+    "fichaCliente": {
+      "home": {
+        "title": "Ficha Clientes",
+        "createLabel": "Crear nuevo Ficha Cliente",
+        "createOrEditLabel": "Crear o editar Ficha Cliente",
+        "notFound": "No Ficha Clientes found"
+      },
+      "created": "Un nuevo Ficha Cliente ha sido creado con el identificador {{ param }}",
+      "updated": "Un Ficha Cliente ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Ficha Cliente ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Ficha Cliente {{ id }}?"
+      },
+      "detail": {
+        "title": "Ficha Cliente"
+      },
+      "solicitud": "Solicitud",
+      "prioridad": "Prioridad",
+      "comentario": "Comentario",
+      "cliente": "Cliente",
+      "producto": "Producto",
+      "area": "Area",
+      "cita": "Cita",
+      "tipoProducto": "Tipo Producto"
+    }
+  }
+}

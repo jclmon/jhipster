@@ -1,0 +1,133 @@
+entity Agente {
+	nombre String maxlength(200) required,
+	apellido1 String maxlength(200) required,
+	apellido2 String maxlength(200),
+	telefono String maxlength(15) required
+}
+
+entity Area {
+	nombre String maxlength(200) required
+}
+
+entity Cita {
+	fecha Instant required,
+	comentario String maxlength(3999),
+    estado Estado required
+}
+enum Estado {
+    PENDIENTE, REALIZADA, CANCELADA
+}
+
+entity Cliente {
+	nombre String maxlength(200) required,
+	apellido1 String maxlength(200) required,
+	apellido2 String maxlength(200),
+	nif String maxlength(15),
+    genero Genero required,
+	tlfMovil String maxlength(15) required,
+	tlfMovil2 String maxlength(15),
+	tlfFijo String maxlength(15),
+	fax String maxlength(15),
+    email1 String required pattern(/^[^@\s]+@[^@\s]+\.[^@\s]+$/),
+	email2 String pattern(/^[^@\s]+@[^@\s]+\.[^@\s]+$/)
+}
+enum Genero {
+    HOMBRE, MUJER, OTRO
+}
+
+entity FichaCliente {
+    solicitud Solicitud  required,
+    prioridad Prioridad required,
+	comentario String maxlength(3999)
+}
+enum Solicitud {
+    COMPRA, VENTA, ALQUILER, COMPARTIR, VACACIONAL
+}
+enum Prioridad {
+    ALTA, MEDIA, BAJA
+}
+
+entity Fuente {
+	nombre String maxlength(200) required
+}
+
+entity Municipio {
+	nombre String maxlength(200) required,
+	codPostal String maxlength(15) required
+}
+entity Pais {
+	nombre String maxlength(200) required
+}
+entity Provincia {
+	nombre String maxlength(200) required
+}
+
+entity Producto {
+	direccion String maxlength(500) required,
+	comentario TextBlob,
+    destino Solicitud required,
+    precio Long,
+	image1 ImageBlob,
+	image2 ImageBlob,
+	image3 ImageBlob,
+	image4 ImageBlob,
+	image5 ImageBlob
+}
+
+entity TipoProducto {
+	nombre String maxlength(100) required
+}
+
+// Relations
+relationship ManyToOne {
+	Producto{municipio(nombre) required} to Municipio
+}
+relationship ManyToOne {
+	Producto{tipoProducto(nombre) required} to TipoProducto
+}
+
+relationship ManyToOne {
+	Cita{agente(nombre) required} to Agente
+}
+
+relationship ManyToOne {
+	Cliente{fuente(nombre) required} to Fuente
+}
+
+relationship ManyToOne {
+	FichaCliente{cliente(nombre) required} to Cliente
+}
+
+relationship ManyToOne {
+	FichaCliente{producto(direccion)} to Producto
+}
+
+relationship ManyToOne {
+	Municipio{provincia(nombre) required} to Provincia
+}
+
+relationship ManyToOne {
+	Area{municipio(nombre) required} to Municipio
+}
+
+relationship ManyToOne {
+	Provincia{pais(nombre) required} to Pais
+}
+
+relationship ManyToMany {
+	FichaCliente{area(nombre) required} to Area
+}
+
+relationship ManyToMany {
+	FichaCliente{cita required} to Cita
+}
+
+relationship ManyToMany {
+	FichaCliente{tipoProducto(nombre) required}  to TipoProducto
+}
+
+// Options
+service * with serviceClass
+paginate * with pagination
+dto * with mapstruct
+filter *

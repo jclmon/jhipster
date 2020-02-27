@@ -1,0 +1,107 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "municipio",
+            "otherEntityRelationshipName": "producto",
+            "relationshipValidateRules": "required",
+            "relationshipName": "municipio",
+            "otherEntityField": "nombre"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "tipoProducto",
+            "otherEntityRelationshipName": "producto",
+            "relationshipValidateRules": "required",
+            "relationshipName": "tipoProducto",
+            "otherEntityField": "nombre"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "direccion",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength",
+                "required"
+            ],
+            "fieldValidateRulesMaxlength": 500
+        },
+        {
+            "fieldName": "comentario",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        },
+        {
+            "fieldName": "destino",
+            "fieldType": "Solicitud",
+            "fieldValues": "COMPRA,VENTA,ALQUILER,COMPARTIR,VACACIONAL",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "precio",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "image1",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "image2",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "image3",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "image4",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "image5",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "precioAnterior",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "dormitorios",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "aseos",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "metros",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "garage",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "anioconstruccion",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20191011054816",
+    "dto": "mapstruct",
+    "searchEngine": false,
+    "service": "serviceClass",
+    "entityTableName": "producto",
+    "databaseType": "sql",
+    "jpaMetamodelFiltering": true,
+    "pagination": "pagination"
+}

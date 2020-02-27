@@ -1,0 +1,33 @@
+{
+    "name": "Provincia",
+    "fields": [
+        {
+            "fieldName": "nombre",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength",
+                "required"
+            ],
+            "fieldValidateRulesMaxlength": 200
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "pais",
+            "otherEntityRelationshipName": "provincia",
+            "relationshipValidateRules": "required",
+            "relationshipName": "pais",
+            "otherEntityField": "nombre"
+        }
+    ],
+    "changelogDate": "20191011054815",
+    "entityTableName": "provincia",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

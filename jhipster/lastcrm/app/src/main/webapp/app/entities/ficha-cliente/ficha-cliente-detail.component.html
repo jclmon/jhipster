@@ -1,0 +1,65 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="fichaCliente">
+            <h2><span jhiTranslate="lastcrmApp.fichaCliente.detail.title">Ficha Cliente</span> {{fichaCliente.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="lastcrmApp.fichaCliente.solicitud">Solicitud</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'lastcrmApp.Solicitud.' + fichaCliente.solicitud}}">{{fichaCliente.solicitud}}</span>
+                </dd>
+                <dt><span jhiTranslate="lastcrmApp.fichaCliente.prioridad">Prioridad</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'lastcrmApp.Prioridad.' + fichaCliente.prioridad}}">{{fichaCliente.prioridad}}</span>
+                </dd>
+                <dt><span jhiTranslate="lastcrmApp.fichaCliente.comentario">Comentario</span></dt>
+                <dd>
+                    <span>{{fichaCliente.comentario}}</span>
+                </dd>
+                <dt><span jhiTranslate="lastcrmApp.fichaCliente.cliente">Cliente</span></dt>
+                <dd>
+                    <div *ngIf="fichaCliente.clienteId">
+                        <a [routerLink]="['/cliente', fichaCliente.clienteId, 'view']">{{fichaCliente.clienteNombre}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="lastcrmApp.fichaCliente.producto">Producto</span></dt>
+                <dd>
+                    <div *ngIf="fichaCliente.productoId">
+                        <a [routerLink]="['/producto', fichaCliente.productoId, 'view']">{{fichaCliente.productoDireccion}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="lastcrmApp.fichaCliente.area">Area</span></dt>
+                <dd>
+                    <span *ngFor="let area of fichaCliente.areas; let last = last">
+                        <a [routerLink]="['/area', area?.id, 'view' ]">{{area.nombre}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+                <dt><span jhiTranslate="lastcrmApp.fichaCliente.cita">Cita</span></dt>
+                <dd>
+                    <span *ngFor="let cita of fichaCliente.citas; let last = last">
+                        <a [routerLink]="['/cita', cita?.id, 'view' ]">{{cita.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+                <dt><span jhiTranslate="lastcrmApp.fichaCliente.tipoProducto">Tipo Producto</span></dt>
+                <dd>
+                    <span *ngFor="let tipoProducto of fichaCliente.tipoProductos; let last = last">
+                        <a [routerLink]="['/tipo-producto', tipoProducto?.id, 'view' ]">{{tipoProducto.nombre}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/ficha-cliente', fichaCliente.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

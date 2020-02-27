@@ -1,0 +1,120 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="producto">
+            <h2><span jhiTranslate="lastcrmApp.producto.detail.title">Producto</span> {{producto.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="lastcrmApp.producto.direccion">Direccion</span></dt>
+                <dd>
+                    <span>{{producto.direccion}}</span>
+                </dd>
+                <dt><span jhiTranslate="lastcrmApp.producto.comentario">Comentario</span></dt>
+                <dd>
+                    <span>{{producto.comentario}}</span>
+                </dd>
+                <dt><span jhiTranslate="lastcrmApp.producto.destino">Destino</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'lastcrmApp.Solicitud.' + producto.destino}}">{{producto.destino}}</span>
+                </dd>
+                <dt><span jhiTranslate="lastcrmApp.producto.precio">Precio</span></dt>
+                <dd>
+                    <span>{{producto.precio}}</span>
+                </dd>
+                <dt><span jhiTranslate="lastcrmApp.producto.image1">Image 1</span></dt>
+                <dd>
+                    <div *ngIf="producto.image1">
+                        <a (click)="openFile(producto.image1ContentType, producto.image1)">
+                            <img [src]="'data:' + producto.image1ContentType + ';base64,' + producto.image1" style="max-width: 100%;" alt="producto image"/>
+                        </a>
+                        {{producto.image1ContentType}}, {{byteSize(producto.image1)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="lastcrmApp.producto.image2">Image 2</span></dt>
+                <dd>
+                    <div *ngIf="producto.image2">
+                        <a (click)="openFile(producto.image2ContentType, producto.image2)">
+                            <img [src]="'data:' + producto.image2ContentType + ';base64,' + producto.image2" style="max-width: 100%;" alt="producto image"/>
+                        </a>
+                        {{producto.image2ContentType}}, {{byteSize(producto.image2)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="lastcrmApp.producto.image3">Image 3</span></dt>
+                <dd>
+                    <div *ngIf="producto.image3">
+                        <a (click)="openFile(producto.image3ContentType, producto.image3)">
+                            <img [src]="'data:' + producto.image3ContentType + ';base64,' + producto.image3" style="max-width: 100%;" alt="producto image"/>
+                        </a>
+                        {{producto.image3ContentType}}, {{byteSize(producto.image3)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="lastcrmApp.producto.image4">Image 4</span></dt>
+                <dd>
+                    <div *ngIf="producto.image4">
+                        <a (click)="openFile(producto.image4ContentType, producto.image4)">
+                            <img [src]="'data:' + producto.image4ContentType + ';base64,' + producto.image4" style="max-width: 100%;" alt="producto image"/>
+                        </a>
+                        {{producto.image4ContentType}}, {{byteSize(producto.image4)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="lastcrmApp.producto.image5">Image 5</span></dt>
+                <dd>
+                    <div *ngIf="producto.image5">
+                        <a (click)="openFile(producto.image5ContentType, producto.image5)">
+                            <img [src]="'data:' + producto.image5ContentType + ';base64,' + producto.image5" style="max-width: 100%;" alt="producto image"/>
+                        </a>
+                        {{producto.image5ContentType}}, {{byteSize(producto.image5)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="lastcrmApp.producto.precioAnterior">Precio Anterior</span></dt>
+                <dd>
+                    <span>{{producto.precioAnterior}}</span>
+                </dd>
+                <dt><span jhiTranslate="lastcrmApp.producto.dormitorios">Dormitorios</span></dt>
+                <dd>
+                    <span>{{producto.dormitorios}}</span>
+                </dd>
+                <dt><span jhiTranslate="lastcrmApp.producto.aseos">Aseos</span></dt>
+                <dd>
+                    <span>{{producto.aseos}}</span>
+                </dd>
+                <dt><span jhiTranslate="lastcrmApp.producto.metros">Metros</span></dt>
+                <dd>
+                    <span>{{producto.metros}}</span>
+                </dd>
+                <dt><span jhiTranslate="lastcrmApp.producto.garage">Garage</span></dt>
+                <dd>
+                    <span>{{producto.garage}}</span>
+                </dd>
+                <dt><span jhiTranslate="lastcrmApp.producto.anioconstruccion">Anioconstruccion</span></dt>
+                <dd>
+                    <span>{{producto.anioconstruccion}}</span>
+                </dd>
+                <dt><span jhiTranslate="lastcrmApp.producto.municipio">Municipio</span></dt>
+                <dd>
+                    <div *ngIf="producto.municipioId">
+                        <a [routerLink]="['/municipio', producto.municipioId, 'view']">{{producto.municipioNombre}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="lastcrmApp.producto.tipoProducto">Tipo Producto</span></dt>
+                <dd>
+                    <div *ngIf="producto.tipoProductoId">
+                        <a [routerLink]="['/tipo-producto', producto.tipoProductoId, 'view']">{{producto.tipoProductoNombre}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/producto', producto.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

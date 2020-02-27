@@ -1,0 +1,24 @@
+{
+  "lastcrmApp": {
+    "municipio": {
+      "home": {
+        "title": "Municipios",
+        "createLabel": "Crear nuevo Municipio",
+        "createOrEditLabel": "Crear o editar Municipio",
+        "notFound": "No Municipios found"
+      },
+      "created": "Un nuevo Municipio ha sido creado con el identificador {{ param }}",
+      "updated": "Un Municipio ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Municipio ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Municipio {{ id }}?"
+      },
+      "detail": {
+        "title": "Municipio"
+      },
+      "nombre": "Nombre",
+      "codPostal": "Cod Postal",
+      "provincia": "Provincia"
+    }
+  }
+}

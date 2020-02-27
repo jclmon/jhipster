@@ -1,0 +1,38 @@
+{
+  "lastcrmApp": {
+    "producto": {
+      "home": {
+        "title": "Productos",
+        "createLabel": "Create a new Producto",
+        "createOrEditLabel": "Create or edit a Producto",
+        "notFound": "No Productos found"
+      },
+      "created": "A new Producto is created with identifier {{ param }}",
+      "updated": "A Producto is updated with identifier {{ param }}",
+      "deleted": "A Producto is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Producto {{ id }}?"
+      },
+      "detail": {
+        "title": "Producto"
+      },
+      "direccion": "Direccion",
+      "comentario": "Comentario",
+      "destino": "Destino",
+      "precio": "Precio",
+      "image1": "Image 1",
+      "image2": "Image 2",
+      "image3": "Image 3",
+      "image4": "Image 4",
+      "image5": "Image 5",
+      "precioAnterior": "Precio Anterior",
+      "dormitorios": "Dormitorios",
+      "aseos": "Aseos",
+      "metros": "Metros",
+      "garage": "Garage",
+      "anioconstruccion": "Anioconstruccion",
+      "municipio": "Municipio",
+      "tipoProducto": "Tipo Producto"
+    }
+  }
+}

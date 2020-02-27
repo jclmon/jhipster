@@ -1,0 +1,48 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.lastcrm.gateway",
+      "nativeLanguage": "es"
+    },
+    "jhipsterVersion": "6.3.0",
+    "applicationType": "monolith",
+    "baseName": "lastcrm",
+    "packageName": "com.lastcrm.gateway",
+    "packageFolder": "com/lastcrm/gateway",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "ZjQ0YjM0MzlkMTI3MDIyNzdmNjUzMTQ1ZjVjZDE0MDFlMmM4MjY1MzM4ODMwOTViNDEyMzRiZDM4ZjE2ZDhkZDY2NzkzODE3ZmEwYjQ4MzU5M2IxYTgwNTdkYWM2YmM2YTg4NTEwMjA1NWQyOGFlYzhlNmU0ODNjYThhMWIxMGI=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "none",
+    "clientThemeVariant": "",
+    "testFrameworks": [
+      "protractor"
+    ],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "nativeLanguage": "es",
+    "languages": [
+      "es",
+      "ca",
+      "en"
+    ],
+    "blueprints": []
+  }
+}

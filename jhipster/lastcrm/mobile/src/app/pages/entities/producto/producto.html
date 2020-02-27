@@ -1,0 +1,71 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Productos
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<!-- todo: add elasticsearch support -->
+<ion-content padding>
+    <ion-refresher [disabled]="plt.is('desktop')" slot="fixed" (ionRefresh)="loadAll($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <ion-list>
+        <ion-item-sliding *ngFor="let producto of productos; trackBy: trackId" #slidingItem>
+            <ion-item (click)="view(producto)">
+              <ion-label text-wrap>
+                <p>{{producto.direccion}}</p>
+                <p>{{producto.comentario}}</p>
+                <!-- todo: special handling for translating enum - {{'Solicitud.' + producto.destino}}" -->
+                <p>{{producto.destino}}</p>
+                <p>{{producto.precio}}</p>
+                <ion-avatar *ngIf="producto.image1">
+                    <img [src]="'data:' + producto.image1ContentType + ';base64,' + producto.image1" />
+                    <p *ngIf="producto.image1">{{producto.image1ContentType}}, {{byteSize(producto.image1)}}</p>
+                </ion-avatar>
+                <ion-avatar *ngIf="producto.image2">
+                    <img [src]="'data:' + producto.image2ContentType + ';base64,' + producto.image2" />
+                    <p *ngIf="producto.image2">{{producto.image2ContentType}}, {{byteSize(producto.image2)}}</p>
+                </ion-avatar>
+                <ion-avatar *ngIf="producto.image3">
+                    <img [src]="'data:' + producto.image3ContentType + ';base64,' + producto.image3" />
+                    <p *ngIf="producto.image3">{{producto.image3ContentType}}, {{byteSize(producto.image3)}}</p>
+                </ion-avatar>
+                <ion-avatar *ngIf="producto.image4">
+                    <img [src]="'data:' + producto.image4ContentType + ';base64,' + producto.image4" />
+                    <p *ngIf="producto.image4">{{producto.image4ContentType}}, {{byteSize(producto.image4)}}</p>
+                </ion-avatar>
+                <ion-avatar *ngIf="producto.image5">
+                    <img [src]="'data:' + producto.image5ContentType + ';base64,' + producto.image5" />
+                    <p *ngIf="producto.image5">{{producto.image5ContentType}}, {{byteSize(producto.image5)}}</p>
+                </ion-avatar>
+              </ion-label>
+            </ion-item>
+            <ion-item-options side="end">
+                <ion-item-option color="primary" (click)="edit(slidingItem, producto)">
+                    {{ 'EDIT_BUTTON' | translate }}
+                </ion-item-option>
+                <ion-item-option color="danger" (click)="delete(producto)">
+                    {{ 'DELETE_BUTTON' | translate }}
+                </ion-item-option>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+    <ion-item *ngIf="!productos?.length">
+        <ion-label>
+            No Productos found.
+        </ion-label>
+    </ion-item>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="new()">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+</ion-content>

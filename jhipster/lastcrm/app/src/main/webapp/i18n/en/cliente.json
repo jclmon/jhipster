@@ -1,0 +1,33 @@
+{
+  "lastcrmApp": {
+    "cliente": {
+      "home": {
+        "title": "Clientes",
+        "createLabel": "Create a new Cliente",
+        "createOrEditLabel": "Create or edit a Cliente",
+        "notFound": "No Clientes found"
+      },
+      "created": "A new Cliente is created with identifier {{ param }}",
+      "updated": "A Cliente is updated with identifier {{ param }}",
+      "deleted": "A Cliente is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Cliente {{ id }}?"
+      },
+      "detail": {
+        "title": "Cliente"
+      },
+      "nombre": "Nombre",
+      "apellido1": "Apellido 1",
+      "apellido2": "Apellido 2",
+      "nif": "Nif",
+      "genero": "Genero",
+      "tlfMovil": "Tlf Movil",
+      "tlfMovil2": "Tlf Movil 2",
+      "tlfFijo": "Tlf Fijo",
+      "fax": "Fax",
+      "email1": "Email 1",
+      "email2": "Email 2",
+      "fuente": "Fuente"
+    }
+  }
+}

@@ -1,0 +1,130 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="lastcrmApp.producto.home.title">Productos</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-producto" [routerLink]="['/producto/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="lastcrmApp.producto.home.createLabel">
+            Create a new Producto
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="productos?.length === 0">
+        <span jhiTranslate="lastcrmApp.producto.home.notFound">No productos found</span>
+    </div>
+    <div class="table-responsive" *ngIf="productos?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="direccion"><span jhiTranslate="lastcrmApp.producto.direccion">Direccion</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="comentario"><span jhiTranslate="lastcrmApp.producto.comentario">Comentario</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="destino"><span jhiTranslate="lastcrmApp.producto.destino">Destino</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="precio"><span jhiTranslate="lastcrmApp.producto.precio">Precio</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="image1"><span jhiTranslate="lastcrmApp.producto.image1">Image 1</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="image2"><span jhiTranslate="lastcrmApp.producto.image2">Image 2</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="image3"><span jhiTranslate="lastcrmApp.producto.image3">Image 3</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="image4"><span jhiTranslate="lastcrmApp.producto.image4">Image 4</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="image5"><span jhiTranslate="lastcrmApp.producto.image5">Image 5</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="precioAnterior"><span jhiTranslate="lastcrmApp.producto.precioAnterior">Precio Anterior</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="dormitorios"><span jhiTranslate="lastcrmApp.producto.dormitorios">Dormitorios</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="aseos"><span jhiTranslate="lastcrmApp.producto.aseos">Aseos</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="metros"><span jhiTranslate="lastcrmApp.producto.metros">Metros</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="garage"><span jhiTranslate="lastcrmApp.producto.garage">Garage</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="anioconstruccion"><span jhiTranslate="lastcrmApp.producto.anioconstruccion">Anioconstruccion</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="municipioNombre"><span jhiTranslate="lastcrmApp.producto.municipio">Municipio</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="tipoProductoNombre"><span jhiTranslate="lastcrmApp.producto.tipoProducto">Tipo Producto</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let producto of productos ;trackBy: trackId">
+                <td><a [routerLink]="['/producto', producto.id, 'view' ]">{{producto.id}}</a></td>
+                <td>{{producto.direccion}}</td>
+                <td>{{producto.comentario}}</td>
+                <td jhiTranslate="{{'lastcrmApp.Solicitud.' + producto.destino}}">{{producto.destino}}</td>
+                <td>{{producto.precio}}</td>
+                <td>
+                    <a *ngIf="producto.image1" (click)="openFile(producto.image1ContentType, producto.image1)">
+                        <img [src]="'data:' + producto.image1ContentType + ';base64,' + producto.image1" style="max-height: 30px;" alt="producto image"/>
+                    </a>
+                    <span *ngIf="producto.image1">{{producto.image1ContentType}}, {{byteSize(producto.image1)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="producto.image2" (click)="openFile(producto.image2ContentType, producto.image2)">
+                        <img [src]="'data:' + producto.image2ContentType + ';base64,' + producto.image2" style="max-height: 30px;" alt="producto image"/>
+                    </a>
+                    <span *ngIf="producto.image2">{{producto.image2ContentType}}, {{byteSize(producto.image2)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="producto.image3" (click)="openFile(producto.image3ContentType, producto.image3)">
+                        <img [src]="'data:' + producto.image3ContentType + ';base64,' + producto.image3" style="max-height: 30px;" alt="producto image"/>
+                    </a>
+                    <span *ngIf="producto.image3">{{producto.image3ContentType}}, {{byteSize(producto.image3)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="producto.image4" (click)="openFile(producto.image4ContentType, producto.image4)">
+                        <img [src]="'data:' + producto.image4ContentType + ';base64,' + producto.image4" style="max-height: 30px;" alt="producto image"/>
+                    </a>
+                    <span *ngIf="producto.image4">{{producto.image4ContentType}}, {{byteSize(producto.image4)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="producto.image5" (click)="openFile(producto.image5ContentType, producto.image5)">
+                        <img [src]="'data:' + producto.image5ContentType + ';base64,' + producto.image5" style="max-height: 30px;" alt="producto image"/>
+                    </a>
+                    <span *ngIf="producto.image5">{{producto.image5ContentType}}, {{byteSize(producto.image5)}}</span>
+                </td>
+                <td>{{producto.precioAnterior}}</td>
+                <td>{{producto.dormitorios}}</td>
+                <td>{{producto.aseos}}</td>
+                <td>{{producto.metros}}</td>
+                <td>{{producto.garage}}</td>
+                <td>{{producto.anioconstruccion}}</td>
+                <td>
+                    <div *ngIf="producto.municipioId">
+                        <a [routerLink]="['/municipio', producto.municipioId , 'view' ]" >{{producto.municipioNombre}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="producto.tipoProductoId">
+                        <a [routerLink]="['/tipo-producto', producto.tipoProductoId , 'view' ]" >{{producto.tipoProductoNombre}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/producto', producto.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/producto', producto.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/producto', { outlets: { popup: producto.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div [hidden]="productos?.length === 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

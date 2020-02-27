@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity FichaCliente.
+    -->
+    <changeSet id="20191011054811-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="cliente_id"
+                                 baseTableName="ficha_cliente"
+                                 constraintName="fk_ficha_cliente_cliente_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cliente"/>
+
+        <addForeignKeyConstraint baseColumnNames="producto_id"
+                                 baseTableName="ficha_cliente"
+                                 constraintName="fk_ficha_cliente_producto_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="producto"/>
+
+        <addForeignKeyConstraint baseColumnNames="ficha_cliente_id"
+                                 baseTableName="ficha_cliente_area"
+                                 constraintName="fk_ficha_cliente_area_ficha_cliente_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ficha_cliente"/>
+
+        <addForeignKeyConstraint baseColumnNames="area_id"
+                                 baseTableName="ficha_cliente_area"
+                                 constraintName="fk_ficha_cliente_area_area_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="area"/>
+        
+        <addForeignKeyConstraint baseColumnNames="ficha_cliente_id"
+                                 baseTableName="ficha_cliente_cita"
+                                 constraintName="fk_ficha_cliente_cita_ficha_cliente_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ficha_cliente"/>
+
+        <addForeignKeyConstraint baseColumnNames="cita_id"
+                                 baseTableName="ficha_cliente_cita"
+                                 constraintName="fk_ficha_cliente_cita_cita_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cita"/>
+        
+        <addForeignKeyConstraint baseColumnNames="ficha_cliente_id"
+                                 baseTableName="ficha_cliente_tipo_producto"
+                                 constraintName="fk_ficha_cliente_tipo_producto_ficha_cliente_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ficha_cliente"/>
+
+        <addForeignKeyConstraint baseColumnNames="tipo_producto_id"
+                                 baseTableName="ficha_cliente_tipo_producto"
+                                 constraintName="fk_ficha_cliente_tipo_producto_tipo_producto_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tipo_producto"/>
+        
+    </changeSet>
+</databaseChangeLog>

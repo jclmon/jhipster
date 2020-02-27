@@ -1,0 +1,23 @@
+{
+  "lastcrmApp": {
+    "area": {
+      "home": {
+        "title": "Areas",
+        "createLabel": "Crear nuevo Area",
+        "createOrEditLabel": "Crear o editar Area",
+        "notFound": "No Areas found"
+      },
+      "created": "Un nuevo Area ha sido creado con el identificador {{ param }}",
+      "updated": "Un Area ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Area ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Area {{ id }}?"
+      },
+      "detail": {
+        "title": "Area"
+      },
+      "nombre": "Nombre",
+      "municipio": "Municipio"
+    }
+  }
+}

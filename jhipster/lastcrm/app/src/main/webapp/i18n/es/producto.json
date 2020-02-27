@@ -1,0 +1,38 @@
+{
+  "lastcrmApp": {
+    "producto": {
+      "home": {
+        "title": "Propiedades",
+        "createLabel": "Crear nuevo Producto",
+        "createOrEditLabel": "Crear o editar Producto",
+        "notFound": "No Productos found"
+      },
+      "created": "Un nuevo Producto ha sido creado con el identificador {{ param }}",
+      "updated": "Un Producto ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Producto ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Producto {{ id }}?"
+      },
+      "detail": {
+        "title": "Producto"
+      },
+      "direccion": "Dirección",
+      "comentario": "Comentario",
+      "destino": "Destino",
+      "precio": "Precio",
+      "image1": "Imagen Principal",
+      "image2": "Imagen",
+      "image3": "Imagen",
+      "image4": "Imagen",
+      "image5": "Imagen",
+      "precioAnterior": "Precio Anterior",
+      "dormitorios": "Número de dormitorios",
+      "aseos": "Número de baños",
+      "metros": "Metros cuadrados",
+      "garage": "Número de garages",
+      "anioconstruccion": "Año Construcción",
+      "municipio": "Municipio",
+      "tipoProducto": "Tipo Producto"
+    }
+  }
+}

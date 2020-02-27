@@ -1,0 +1,206 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-producto-heading" jhiTranslate="lastcrmApp.producto.home.createOrEditLabel">Create or edit a Producto</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lastcrmApp.producto.direccion" for="field_direccion">Direccion</label>
+                    <input type="text" class="form-control" name="direccion" id="field_direccion"
+                           formControlName="direccion"/>
+                    <div *ngIf="editForm.get('direccion').invalid && (editForm.get('direccion').dirty || editForm.get('direccion').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('direccion').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('direccion').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 500 }">
+                        This field cannot be longer than 500 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lastcrmApp.producto.comentario" for="field_comentario">Comentario</label>
+                    <textarea class="form-control" name="comentario" id="field_comentario"
+                              formControlName="comentario"></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lastcrmApp.producto.destino" for="field_destino">Destino</label>
+                    <select class="form-control" name="destino" formControlName="destino" id="field_destino">
+                        <option value="COMPRA">{{'lastcrmApp.Solicitud.COMPRA' | translate}}</option>
+                        <option value="VENTA">{{'lastcrmApp.Solicitud.VENTA' | translate}}</option>
+                        <option value="ALQUILER">{{'lastcrmApp.Solicitud.ALQUILER' | translate}}</option>
+                        <option value="COMPARTIR">{{'lastcrmApp.Solicitud.COMPARTIR' | translate}}</option>
+                        <option value="VACACIONAL">{{'lastcrmApp.Solicitud.VACACIONAL' | translate}}</option>
+                    </select>
+                    <div *ngIf="editForm.get('destino').invalid && (editForm.get('destino').dirty || editForm.get('destino').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('destino').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lastcrmApp.producto.precio" for="field_precio">Precio</label>
+                    <input type="number" class="form-control" name="precio" id="field_precio"
+                           formControlName="precio"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lastcrmApp.producto.image1" for="field_image1">Image 1</label>
+                    <div>
+                        <img [src]="'data:' + editForm.get('image1ContentType').value + ';base64,' + editForm.get('image1').value" style="max-height: 100px;" *ngIf="editForm.get('image1').value" alt="producto image"/>
+                        <div *ngIf="editForm.get('image1').value" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{editForm.get('image1ContentType').value}}, {{byteSize(editForm.get('image1').value)}}</span>
+                            <button type="button" (click)="clearInputImage('image1', 'image1ContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_image1" (change)="setFileData($event, 'image1', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="image1" id="field_image1"
+                           formControlName="image1"/>
+                    <input type="hidden" class="form-control" name="image1ContentType" id="field_image1ContentType"
+                           formControlName="image1ContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lastcrmApp.producto.image2" for="field_image2">Image 2</label>
+                    <div>
+                        <img [src]="'data:' + editForm.get('image2ContentType').value + ';base64,' + editForm.get('image2').value" style="max-height: 100px;" *ngIf="editForm.get('image2').value" alt="producto image"/>
+                        <div *ngIf="editForm.get('image2').value" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{editForm.get('image2ContentType').value}}, {{byteSize(editForm.get('image2').value)}}</span>
+                            <button type="button" (click)="clearInputImage('image2', 'image2ContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_image2" (change)="setFileData($event, 'image2', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="image2" id="field_image2"
+                           formControlName="image2"/>
+                    <input type="hidden" class="form-control" name="image2ContentType" id="field_image2ContentType"
+                           formControlName="image2ContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lastcrmApp.producto.image3" for="field_image3">Image 3</label>
+                    <div>
+                        <img [src]="'data:' + editForm.get('image3ContentType').value + ';base64,' + editForm.get('image3').value" style="max-height: 100px;" *ngIf="editForm.get('image3').value" alt="producto image"/>
+                        <div *ngIf="editForm.get('image3').value" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{editForm.get('image3ContentType').value}}, {{byteSize(editForm.get('image3').value)}}</span>
+                            <button type="button" (click)="clearInputImage('image3', 'image3ContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_image3" (change)="setFileData($event, 'image3', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="image3" id="field_image3"
+                           formControlName="image3"/>
+                    <input type="hidden" class="form-control" name="image3ContentType" id="field_image3ContentType"
+                           formControlName="image3ContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lastcrmApp.producto.image4" for="field_image4">Image 4</label>
+                    <div>
+                        <img [src]="'data:' + editForm.get('image4ContentType').value + ';base64,' + editForm.get('image4').value" style="max-height: 100px;" *ngIf="editForm.get('image4').value" alt="producto image"/>
+                        <div *ngIf="editForm.get('image4').value" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{editForm.get('image4ContentType').value}}, {{byteSize(editForm.get('image4').value)}}</span>
+                            <button type="button" (click)="clearInputImage('image4', 'image4ContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_image4" (change)="setFileData($event, 'image4', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="image4" id="field_image4"
+                           formControlName="image4"/>
+                    <input type="hidden" class="form-control" name="image4ContentType" id="field_image4ContentType"
+                           formControlName="image4ContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lastcrmApp.producto.image5" for="field_image5">Image 5</label>
+                    <div>
+                        <img [src]="'data:' + editForm.get('image5ContentType').value + ';base64,' + editForm.get('image5').value" style="max-height: 100px;" *ngIf="editForm.get('image5').value" alt="producto image"/>
+                        <div *ngIf="editForm.get('image5').value" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{editForm.get('image5ContentType').value}}, {{byteSize(editForm.get('image5').value)}}</span>
+                            <button type="button" (click)="clearInputImage('image5', 'image5ContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_image5" (change)="setFileData($event, 'image5', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="image5" id="field_image5"
+                           formControlName="image5"/>
+                    <input type="hidden" class="form-control" name="image5ContentType" id="field_image5ContentType"
+                           formControlName="image5ContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lastcrmApp.producto.precioAnterior" for="field_precioAnterior">Precio Anterior</label>
+                    <input type="number" class="form-control" name="precioAnterior" id="field_precioAnterior"
+                           formControlName="precioAnterior"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lastcrmApp.producto.dormitorios" for="field_dormitorios">Dormitorios</label>
+                    <input type="number" class="form-control" name="dormitorios" id="field_dormitorios"
+                           formControlName="dormitorios"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lastcrmApp.producto.aseos" for="field_aseos">Aseos</label>
+                    <input type="number" class="form-control" name="aseos" id="field_aseos"
+                           formControlName="aseos"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lastcrmApp.producto.metros" for="field_metros">Metros</label>
+                    <input type="number" class="form-control" name="metros" id="field_metros"
+                           formControlName="metros"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lastcrmApp.producto.garage" for="field_garage">Garage</label>
+                    <input type="number" class="form-control" name="garage" id="field_garage"
+                           formControlName="garage"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lastcrmApp.producto.anioconstruccion" for="field_anioconstruccion">Anioconstruccion</label>
+                    <input type="number" class="form-control" name="anioconstruccion" id="field_anioconstruccion"
+                           formControlName="anioconstruccion"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lastcrmApp.producto.municipio" for="field_municipio">Municipio</label>
+                    <select class="form-control" id="field_municipio" name="municipio" formControlName="municipioId">
+                        <option *ngIf="!editForm.get('municipioId').value" [ngValue]="null" selected></option>
+                        <option [ngValue]="municipioOption.id" *ngFor="let municipioOption of municipios; trackBy: trackMunicipioById">{{municipioOption.nombre}}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('municipioId').invalid && (editForm.get('municipioId').dirty || editForm.get('municipioId').touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('municipioId').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lastcrmApp.producto.tipoProducto" for="field_tipoProducto">Tipo Producto</label>
+                    <select class="form-control" id="field_tipoProducto" name="tipoProducto" formControlName="tipoProductoId">
+                        <option *ngIf="!editForm.get('tipoProductoId').value" [ngValue]="null" selected></option>
+                        <option [ngValue]="tipoProductoOption.id" *ngFor="let tipoProductoOption of tipoproductos; trackBy: trackTipoProductoById">{{tipoProductoOption.nombre}}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('tipoProductoId').invalid && (editForm.get('tipoProductoId').dirty || editForm.get('tipoProductoId').touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('tipoProductoId').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

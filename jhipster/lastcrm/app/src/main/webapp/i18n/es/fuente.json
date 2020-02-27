@@ -1,0 +1,22 @@
+{
+  "lastcrmApp": {
+    "fuente": {
+      "home": {
+        "title": "Fuentes",
+        "createLabel": "Crear nuevo Fuente",
+        "createOrEditLabel": "Crear o editar Fuente",
+        "notFound": "No Fuentes found"
+      },
+      "created": "Un nuevo Fuente ha sido creado con el identificador {{ param }}",
+      "updated": "Un Fuente ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Fuente ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Fuente {{ id }}?"
+      },
+      "detail": {
+        "title": "Fuente"
+      },
+      "nombre": "Nombre"
+    }
+  }
+}

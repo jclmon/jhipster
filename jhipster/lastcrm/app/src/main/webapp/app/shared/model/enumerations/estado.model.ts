@@ -1,0 +1,5 @@
+export const enum Estado {
+  PENDIENTE = 'PENDIENTE',
+  REALIZADA = 'REALIZADA',
+  CANCELADA = 'CANCELADA'
+}

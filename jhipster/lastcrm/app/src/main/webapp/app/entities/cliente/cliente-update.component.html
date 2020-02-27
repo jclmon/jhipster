@@ -1,0 +1,177 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-cliente-heading" jhiTranslate="lastcrmApp.cliente.home.createOrEditLabel">Create or edit a Cliente</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lastcrmApp.cliente.nombre" for="field_nombre">Nombre</label>
+                    <input type="text" class="form-control" name="nombre" id="field_nombre"
+                           formControlName="nombre"/>
+                    <div *ngIf="editForm.get('nombre').invalid && (editForm.get('nombre').dirty || editForm.get('nombre').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nombre').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nombre').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 200 }">
+                        This field cannot be longer than 200 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lastcrmApp.cliente.apellido1" for="field_apellido1">Apellido 1</label>
+                    <input type="text" class="form-control" name="apellido1" id="field_apellido1"
+                           formControlName="apellido1"/>
+                    <div *ngIf="editForm.get('apellido1').invalid && (editForm.get('apellido1').dirty || editForm.get('apellido1').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('apellido1').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('apellido1').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 200 }">
+                        This field cannot be longer than 200 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lastcrmApp.cliente.apellido2" for="field_apellido2">Apellido 2</label>
+                    <input type="text" class="form-control" name="apellido2" id="field_apellido2"
+                           formControlName="apellido2"/>
+                    <div *ngIf="editForm.get('apellido2').invalid && (editForm.get('apellido2').dirty || editForm.get('apellido2').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('apellido2').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 200 }">
+                        This field cannot be longer than 200 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lastcrmApp.cliente.nif" for="field_nif">Nif</label>
+                    <input type="text" class="form-control" name="nif" id="field_nif"
+                           formControlName="nif"/>
+                    <div *ngIf="editForm.get('nif').invalid && (editForm.get('nif').dirty || editForm.get('nif').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nif').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 15 }">
+                        This field cannot be longer than 15 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lastcrmApp.cliente.genero" for="field_genero">Genero</label>
+                    <select class="form-control" name="genero" formControlName="genero" id="field_genero">
+                        <option value="HOMBRE">{{'lastcrmApp.Genero.HOMBRE' | translate}}</option>
+                        <option value="MUJER">{{'lastcrmApp.Genero.MUJER' | translate}}</option>
+                        <option value="OTRO">{{'lastcrmApp.Genero.OTRO' | translate}}</option>
+                    </select>
+                    <div *ngIf="editForm.get('genero').invalid && (editForm.get('genero').dirty || editForm.get('genero').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('genero').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lastcrmApp.cliente.tlfMovil" for="field_tlfMovil">Tlf Movil</label>
+                    <input type="text" class="form-control" name="tlfMovil" id="field_tlfMovil"
+                           formControlName="tlfMovil"/>
+                    <div *ngIf="editForm.get('tlfMovil').invalid && (editForm.get('tlfMovil').dirty || editForm.get('tlfMovil').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('tlfMovil').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('tlfMovil').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 15 }">
+                        This field cannot be longer than 15 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lastcrmApp.cliente.tlfMovil2" for="field_tlfMovil2">Tlf Movil 2</label>
+                    <input type="text" class="form-control" name="tlfMovil2" id="field_tlfMovil2"
+                           formControlName="tlfMovil2"/>
+                    <div *ngIf="editForm.get('tlfMovil2').invalid && (editForm.get('tlfMovil2').dirty || editForm.get('tlfMovil2').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('tlfMovil2').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 15 }">
+                        This field cannot be longer than 15 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lastcrmApp.cliente.tlfFijo" for="field_tlfFijo">Tlf Fijo</label>
+                    <input type="text" class="form-control" name="tlfFijo" id="field_tlfFijo"
+                           formControlName="tlfFijo"/>
+                    <div *ngIf="editForm.get('tlfFijo').invalid && (editForm.get('tlfFijo').dirty || editForm.get('tlfFijo').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('tlfFijo').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 15 }">
+                        This field cannot be longer than 15 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lastcrmApp.cliente.fax" for="field_fax">Fax</label>
+                    <input type="text" class="form-control" name="fax" id="field_fax"
+                           formControlName="fax"/>
+                    <div *ngIf="editForm.get('fax').invalid && (editForm.get('fax').dirty || editForm.get('fax').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('fax').errors.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 15 }">
+                        This field cannot be longer than 15 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lastcrmApp.cliente.email1" for="field_email1">Email 1</label>
+                    <input type="text" class="form-control" name="email1" id="field_email1"
+                           formControlName="email1"/>
+                    <div *ngIf="editForm.get('email1').invalid && (editForm.get('email1').dirty || editForm.get('email1').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('email1').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('email1').errors.pattern" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Email 1' }">
+                            This field should follow pattern for "Email 1".
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lastcrmApp.cliente.email2" for="field_email2">Email 2</label>
+                    <input type="text" class="form-control" name="email2" id="field_email2"
+                           formControlName="email2"/>
+                    <div *ngIf="editForm.get('email2').invalid && (editForm.get('email2').dirty || editForm.get('email2').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('email2').errors.pattern" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Email 2' }">
+                            This field should follow pattern for "Email 2".
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="lastcrmApp.cliente.fuente" for="field_fuente">Fuente</label>
+                    <select class="form-control" id="field_fuente" name="fuente" formControlName="fuenteId">
+                        <option *ngIf="!editForm.get('fuenteId').value" [ngValue]="null" selected></option>
+                        <option [ngValue]="fuenteOption.id" *ngFor="let fuenteOption of fuentes; trackBy: trackFuenteById">{{fuenteOption.nombre}}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('fuenteId').invalid && (editForm.get('fuenteId').dirty || editForm.get('fuenteId').touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('fuenteId').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,7 @@
+export const enum Solicitud {
+  COMPRA = 'COMPRA',
+  VENTA = 'VENTA',
+  ALQUILER = 'ALQUILER',
+  COMPARTIR = 'COMPARTIR',
+  VACACIONAL = 'VACACIONAL'
+}

@@ -1,0 +1,110 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Producto
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list>
+        <ion-item>
+            <ion-label position="fixed">Direccion</ion-label>
+            <div item-content>
+                <span>{{producto.direccion}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Comentario</ion-label>
+            <div item-content>
+                <span>{{producto.comentario}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Destino</ion-label>
+            <div item-content>
+                <span>{{producto.destino}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Precio</ion-label>
+            <div item-content>
+                <span>{{producto.precio}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Image 1</ion-label>
+            <div item-content>
+                <div *ngIf="producto.image1">
+                    <a (click)="openFile(producto.image1ContentType, producto.image1)">
+                        <img [src]="'data:' + producto.image1ContentType + ';base64,' + producto.image1" style="max-width: 100%;" alt="producto image"/>
+                    </a>
+                    {{producto.image1ContentType}}, {{byteSize(producto.image1)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Image 2</ion-label>
+            <div item-content>
+                <div *ngIf="producto.image2">
+                    <a (click)="openFile(producto.image2ContentType, producto.image2)">
+                        <img [src]="'data:' + producto.image2ContentType + ';base64,' + producto.image2" style="max-width: 100%;" alt="producto image"/>
+                    </a>
+                    {{producto.image2ContentType}}, {{byteSize(producto.image2)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Image 3</ion-label>
+            <div item-content>
+                <div *ngIf="producto.image3">
+                    <a (click)="openFile(producto.image3ContentType, producto.image3)">
+                        <img [src]="'data:' + producto.image3ContentType + ';base64,' + producto.image3" style="max-width: 100%;" alt="producto image"/>
+                    </a>
+                    {{producto.image3ContentType}}, {{byteSize(producto.image3)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Image 4</ion-label>
+            <div item-content>
+                <div *ngIf="producto.image4">
+                    <a (click)="openFile(producto.image4ContentType, producto.image4)">
+                        <img [src]="'data:' + producto.image4ContentType + ';base64,' + producto.image4" style="max-width: 100%;" alt="producto image"/>
+                    </a>
+                    {{producto.image4ContentType}}, {{byteSize(producto.image4)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label position="fixed">Image 5</ion-label>
+            <div item-content>
+                <div *ngIf="producto.image5">
+                    <a (click)="openFile(producto.image5ContentType, producto.image5)">
+                        <img [src]="'data:' + producto.image5ContentType + ';base64,' + producto.image5" style="max-width: 100%;" alt="producto image"/>
+                    </a>
+                    {{producto.image5ContentType}}, {{byteSize(producto.image5)}}
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Municipio</ion-label>
+            <div item-content *ngIf="producto.municipioId">
+                <a>{{producto.municipioNombre}}</a>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Tipo Producto</ion-label>
+            <div item-content *ngIf="producto.tipoProductoId">
+                <a>{{producto.tipoProductoNombre}}</a>
+            </div>
+        </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" color="primary" (click)="open(producto)">{{ 'EDIT_BUTTON' | translate }}</ion-button>
+    <ion-button expand="block" color="danger" (click)="deleteModal(producto)">{{ 'DELETE_BUTTON' | translate }}</ion-button>
+
+</ion-content>
